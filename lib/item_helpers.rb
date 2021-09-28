@@ -16,7 +16,7 @@ module ItemHelpers
   end
 
   def within_date?(item)
-    item.sell_in >= 0
+    item.sell_in > 0
   end
 
   def past_date?(item)

@@ -9,8 +9,6 @@ class GildedRose
 
   def update_quality()
     @items.each do |item|
-      age(item)
-
       if ordinary?(item)
         depreciate(item, 1)
       else
@@ -45,7 +43,8 @@ class GildedRose
           end
         else # it is aged brie
         end
-      end      
+      end  
+      age(item)    
     end
   end  
 end
