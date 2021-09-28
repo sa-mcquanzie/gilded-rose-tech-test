@@ -1,4 +1,4 @@
-require 'item_helpers'
+require_relative 'item_helpers'
 
 class GildedRose
   include ItemHelpers
@@ -9,11 +9,9 @@ class GildedRose
 
   def update_quality()
     @items.each do |item|
-      if ordinary(item)
-        decrease_date(item)
-      end
+      decrease_date(item)
 
-      if ordinary(item)
+      if ordinary?(item)
         degrade(item, 1)
       else
         if item.quality < 50
@@ -33,26 +31,26 @@ class GildedRose
         end
       end
 
-      
-      if item.sell_in < 0
+
+      if past_date?(item)
         if item.name != "Aged Brie"
           if item.name != "Backstage passes to a TAFKAL80ETC concert"
             if item.quality > 0
-              if item.name != "Sulfuras, Hand of Ragnaros"
-                item.quality = item.quality - 1
+              if item.name != "Sulfuras, Hand of Ragnaros" #it is ordinary
+                degrade(item, 1)
               end
             end
-          else
+          else # it is a backstage pass
             item.quality = item.quality - item.quality
           end
-        else
+        else # it is aged brie
           if item.quality < 50
             item.quality = item.quality + 1
           end
         end
-      end
+      end      
     end
-  end
+  end  
 end
 
 

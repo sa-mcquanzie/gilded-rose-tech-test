@@ -1,6 +1,7 @@
 #!/usr/bin/ruby -w
 
 require File.join(File.dirname(__FILE__), '/lib/gilded_rose')
+require './lib/item_helpers.rb'
 
 puts "OMGHAI!"
 items = [

@@ -1,10 +1,14 @@
 module ItemHelpers
-  def ordinary(item)
+  def ordinary?(item)
     [
       "Aged Brie",
       "Backstage passes to a TAFKAL80ETC concert",
       "Sulfuras, Hand of Ragnaros"
     ].none?(item.name)
+  end
+
+  def sulfuras?(item)
+    item.name == "Sulfuras, Hand of Ragnaros"
   end
 
   def within_date?(item)
