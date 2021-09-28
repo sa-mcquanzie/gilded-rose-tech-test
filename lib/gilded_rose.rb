@@ -9,10 +9,10 @@ class GildedRose
 
   def update_quality()
     @items.each do |item|
-      decrease_date(item)
+      age(item)
 
       if ordinary?(item)
-        degrade(item, 1)
+        depreciate(item, 1)
       else
         if item.quality < 50
           item.quality = item.quality + 1
@@ -37,7 +37,7 @@ class GildedRose
           if item.name != "Backstage passes to a TAFKAL80ETC concert"
             if item.quality > 0
               if item.name != "Sulfuras, Hand of Ragnaros" #it is ordinary
-                degrade(item, 1)
+                depreciate(item, 1)
               end
             end
           else # it is a backstage pass

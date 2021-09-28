@@ -23,12 +23,16 @@ module ItemHelpers
     !within_date?(item)
   end
 
-  def degrade(item, amount)
-    item.quality = item.quality - amount
+  def appreciate(item, amount)
+    item.quality += amount
+  end
+
+  def depreciate(item, amount)
+    item.quality -= amount
     item.quality = 0 if item.quality.negative?
   end
 
-  def decrease_date(item)
+  def age(item)
     item.sell_in -= 1
   end
 
