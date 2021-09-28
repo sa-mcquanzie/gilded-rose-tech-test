@@ -11,6 +11,10 @@ module ItemHelpers
     item.name == "Sulfuras, Hand of Ragnaros"
   end
 
+  def aged_brie?(item)
+    item.name == "Aged Brie"
+  end
+
   def within_date?(item)
     item.sell_in >= 0
   end
