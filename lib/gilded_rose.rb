@@ -31,19 +31,12 @@ class GildedRose
 
 
       if past_date?(item)
-        if item.name != "Aged Brie"
-          if item.name != "Backstage passes to a TAFKAL80ETC concert"
-            if item.quality > 0
-              if item.name != "Sulfuras, Hand of Ragnaros" #it is ordinary
-                depreciate(item, 1)
-              end
-            end
-          else # it is a backstage pass
-            item.quality = item.quality - item.quality
-          end
-        else # it is aged brie
-        end
-      end  
+        depreciate(item, 1) if ordinary?(item)
+        zero_quality(item) if backstage_pass(item)
+      end
+
+
+
       age(item)    
     end
   end  

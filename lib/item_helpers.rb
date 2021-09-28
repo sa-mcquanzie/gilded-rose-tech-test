@@ -15,6 +15,10 @@ module ItemHelpers
     item.name == "Aged Brie"
   end
 
+  def backstage_pass(item)
+    item.name == "Backstage passes to a TAFKAL80ETC concert"
+  end
+
   def within_date?(item)
     item.sell_in > 0
   end
@@ -34,6 +38,10 @@ module ItemHelpers
 
   def age(item)
     item.sell_in -= 1
+  end
+
+  def zero_quality(item)
+    item.quality = 0
   end
 
   def update_ordinary(item)
