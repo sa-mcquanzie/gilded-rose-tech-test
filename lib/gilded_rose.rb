@@ -6,6 +6,7 @@ require 'updateable'
 class GildedRose
   def initialize(items)
     @items = items
+    
     @items.each do |item|
       item
       .extend(ItemMethods)
