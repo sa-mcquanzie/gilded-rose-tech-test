@@ -12,7 +12,8 @@ class GildedRose
       update_ordinary(item) if ordinary?(item)
       update_backstage_pass(item) if backstage_pass?(item)
       update_brie(item) if aged_brie?(item)
-      age(item) if sulfuras?(item)
+      update_sulfuras(item) if sulfuras?(item)
+      age(item)
     end
   end  
 end

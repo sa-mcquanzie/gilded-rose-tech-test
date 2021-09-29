@@ -47,7 +47,6 @@ module ItemHelpers
 
   def update_ordinary(item)
     within_date?(item) ? depreciate(item, 1) : depreciate(item, 2)
-    age(item)
   end
 
   def update_backstage_pass(item)
@@ -59,11 +58,13 @@ module ItemHelpers
     appreciate(item, 1)
     appreciate(item, 1) if item.sell_in < 11
     appreciate(item, 1) if item.sell_in < 6
-    age(item)
   end
 
   def update_brie(item)
     appreciate(item, 1)
-    age(item)
+  end
+
+  def update_sulfuras(item)
+    return
   end
 end
