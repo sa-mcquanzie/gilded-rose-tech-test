@@ -4,7 +4,7 @@ describe GildedRose do
 
   describe "#update_quality" do
     context 'updating an ordinary item' do
-      ordinary_item = Item.new("toothpaste", 1, 20)
+      ordinary_item = Item.new("Toothpaste", 1, 20)
       gilded_rose = GildedRose.new([ordinary_item])
 
       context 'before the sell by date has passed' do
