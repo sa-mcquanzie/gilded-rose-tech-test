@@ -9,29 +9,13 @@ class GildedRose
 
   def update_quality()
     @items.each do |item|
-      if sulfuras?(item)
-        age(item)
-        next
-      end
-
-      if ordinary?(item)
-        update_ordinary(item)
-        next
-      end
-
-      if backstage_pass?(item)
-        update_backstage_pass(item)
-        next
-      end
-
-      if aged_brie?(item)
-        update_brie(item)
-        next
-      end
+      update_ordinary(item) if ordinary?(item)
+      update_backstage_pass(item) if backstage_pass?(item)
+      update_brie(item) if aged_brie?(item)
+      age(item) if sulfuras?(item)
     end
   end  
 end
-
 
 class Item
   attr_accessor :name, :sell_in, :quality
