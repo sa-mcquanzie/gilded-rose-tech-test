@@ -15,12 +15,12 @@ module ItemHelpers
     item.name == "Aged Brie"
   end
 
-  def backstage_pass(item)
+  def backstage_pass?(item)
     item.name == "Backstage passes to a TAFKAL80ETC concert"
   end
 
   def within_date?(item)
-    item.sell_in > 0
+    item.sell_in.positive?
   end
 
   def past_date?(item)
@@ -29,6 +29,7 @@ module ItemHelpers
 
   def appreciate(item, amount)
     item.quality += amount
+    item.quality = 50 if item.quality > 50
   end
 
   def depreciate(item, amount)
@@ -45,7 +46,24 @@ module ItemHelpers
   end
 
   def update_ordinary(item)
-    decrease_date(item)
-    within_date?(item) ? degrade(item, 1) : degrade(item, 2)
+    within_date?(item) ? depreciate(item, 1) : depreciate(item, 2)
+    age(item)
+  end
+
+  def update_backstage_pass(item)
+    unless within_date?(item)
+      zero_quality(item)
+      return
+    end
+
+    appreciate(item, 1)
+    appreciate(item, 1) if item.sell_in < 11
+    appreciate(item, 1) if item.sell_in < 6
+    age(item)
+  end
+
+  def update_brie(item)
+    appreciate(item, 1)
+    age(item)
   end
 end

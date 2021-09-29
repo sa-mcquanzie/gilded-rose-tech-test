@@ -9,35 +9,25 @@ class GildedRose
 
   def update_quality()
     @items.each do |item|
+      if sulfuras?(item)
+        age(item)
+        next
+      end
+
       if ordinary?(item)
-        depreciate(item, 1)
-      else
-        if item.quality < 50
-          item.quality = item.quality + 1
-          if item.name == "Backstage passes to a TAFKAL80ETC concert"
-            if item.sell_in < 11
-              if item.quality < 50
-                item.quality = item.quality + 1
-              end
-            end
-            if item.sell_in < 6
-              if item.quality < 50
-                item.quality = item.quality + 1
-              end
-            end
-          end
-        end
+        update_ordinary(item)
+        next
       end
 
-
-      if past_date?(item)
-        depreciate(item, 1) if ordinary?(item)
-        zero_quality(item) if backstage_pass(item)
+      if backstage_pass?(item)
+        update_backstage_pass(item)
+        next
       end
 
-
-
-      age(item)    
+      if aged_brie?(item)
+        update_brie(item)
+        next
+      end
     end
   end  
 end
