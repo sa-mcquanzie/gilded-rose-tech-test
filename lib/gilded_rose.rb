@@ -1,19 +1,51 @@
 require_relative 'item_helpers'
 
-class GildedRose
+module Updateable
   include ItemHelpers
 
+  def update
+      update_ordinary if ordinary?(self)
+      update_backstage_pass if backstage_pass?(self)
+      update_brie if aged_brie?(self)
+      update_sulfuras if sulfuras?(self)
+      age
+  end
+
+  def update_ordinary
+    within_date?(self) ? depreciate(self, 1) : depreciate(self, 2)
+  end
+
+  def update_backstage_pass
+    unless within_date?(self)
+      zero_quality(self)
+      return
+    end
+
+    appreciate(self, 1)
+    appreciate(self, 1) if self.sell_in < 11
+    appreciate(self, 1) if self.sell_in < 6
+  end
+
+  def update_brie
+    appreciate(self, 1)
+  end
+
+  def update_sulfuras
+    return
+  end
+
+  def age
+    self.sell_in -= 1
+  end
+end
+
+class GildedRose
   def initialize(items)
     @items = items
   end
 
-  def update_quality()
-    @items.each do |item|
-      update_ordinary(item) if ordinary?(item)
-      update_backstage_pass(item) if backstage_pass?(item)
-      update_brie(item) if aged_brie?(item)
-      update_sulfuras(item) if sulfuras?(item)
-      age(item)
+  def update_quality
+    @items.each { |item| item.extend(Updateable).update }
     end
   end  
 end
