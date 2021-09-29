@@ -17,7 +17,7 @@ module ItemMethods
     @quality = 0 if @quality.negative?
   end
 
-  def zero_quality
+  def make_quality_zero
     @quality = 0
   end
 end

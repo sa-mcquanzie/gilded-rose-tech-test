@@ -22,14 +22,17 @@ module Updateable
   end
 
   def update_backstage_pass
-    unless within_date?
-      zero_quality
-      return
+    case @sell_in
+    when 11..Float::INFINITY  
+      appreciate(1)
+    when 6..10
+      appreciate(2)
+    when 1..5
+      appreciate(3)
+    when -Float::INFINITY..0
+      make_quality_zero
+    else
     end
-
-    appreciate(1)
-    appreciate(1) if @sell_in < 11
-    appreciate(1) if @sell_in < 6
   end
 
   def age
