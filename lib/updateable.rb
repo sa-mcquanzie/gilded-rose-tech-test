@@ -16,7 +16,7 @@ module Updateable
     when :conjured then update_conjured
     end
 
-    age unless @category == :legendary
+    @sell_in -= DAY_LENGTH unless @category == :legendary
   end
 
   def update_ordinary
@@ -38,10 +38,6 @@ module Updateable
     when INTERVAL_3 then appreciate(3)
     when INTERVAL_4 then @quality = 0
     end
-  end
-
-  def age
-    @sell_in -= DAY_LENGTH
   end
 
   def appreciate(amount = DEFAULT_QUALITY_EFFECT)
