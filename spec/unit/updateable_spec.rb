@@ -9,13 +9,51 @@ describe Updateable do
 
   context 'when another object extends it' do    
     describe '#update' do
-      it 'decreases the sell_in days by 1' do
-        item.category = :ordinary
-        item.sell_in = 5
-        item.quality = 2
+      context 'for all items' do
+        before do
+          item.sell_in = 1
+          item.quality = 2
+        end
 
-        item.update
-        expect(item.sell_in).to eq(4)
+        it 'decreases the sell_in days by 1' do
+          item.update
+          expect(item.sell_in).to eq(0)
+        end
+      end
+
+      context 'for perishable items' do
+        before do
+          item.sell_in = 1
+          item.quality = 2
+        end
+
+        it 'limits the minimum quality to 0 for ordinary items' do
+          item.category = :ordinary
+          3.times { item.update }
+
+          expect(item.quality).to eq(0)
+        end
+      end
+
+      context 'for items whose quality appreciates over time' do
+        before do
+          item.sell_in = 4
+          item.quality = 49
+        end
+
+        it 'limits the maximum quality to 50 for items in the ages_well category' do
+          item.category = :ages_well
+          2.times { item.update }
+
+          expect(item.quality).to eq(50)
+        end
+
+        it 'limits the maximum quality to 50 for items in the backstage_pass category' do
+          item.category = :backstage_pass
+          2.times { item.update }
+
+          expect(item.quality).to eq(50)
+        end
       end
 
       context 'for ordinary items' do
