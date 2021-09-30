@@ -18,9 +18,9 @@ GildedRoseRequirements.txt.
     * All inherit from an interim UpdateableItem parent class which inherits from Item
     * Might seem like huge overkill, HOWEVER... I think it will end up _a lot_ simpler as well as more flexible
     * UPDATE: Rethunk this and made items inherit from some modules instead
-- [ ] Rewrite tests with mocks
-- [ ] Hopefully still pass
-- [ ] Refactor
+- [x] Rewrite tests with mocks
+- [x] Hopefully still pass
+- [x] Refactor
 - [ ] Test drive towards adding conjoured items using this new design
 - [ ] Update this README
 - [ ] Profit?
