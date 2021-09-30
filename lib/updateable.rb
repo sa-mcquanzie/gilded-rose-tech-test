@@ -7,7 +7,6 @@ module Updateable
       update_ages_well
     when :backstage_pass
       update_backstage_pass
-    else
     end
 
     age
