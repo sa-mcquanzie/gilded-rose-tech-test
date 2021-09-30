@@ -31,6 +31,14 @@ describe Categorizable do
 
         expect(fake_item.categorize).to eq(:backstage_pass)
       end
+
+      it 'categorizes unknown objects as ordinary' do
+        allow(fake_item)
+        .to receive(:name)
+        .and_return('28 year old Nirvana T-shirt')
+
+        expect(fake_item.categorize).to eq(:ordinary)
+      end
     end
   end
 end

@@ -9,6 +9,8 @@ module Categorizable
       'Conjured Mana Cake': { category: :conjured }
     }
 
-    @category = items[name.to_sym][:category]
+    n = name.to_sym
+
+    @category = items.key?(n) ? items[n][:category] : :ordinary
   end
 end
