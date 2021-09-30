@@ -3,10 +3,10 @@ require 'categorizable'
 describe Categorizable do
   context 'when another object extends it' do
     let(:fake_item) { Class.new { extend Categorizable } }
-    
+
     describe '#categorize' do
       it 'categorizes that object correctly if it is ordinary' do
-        allow(fake_item).to receive(:name).and_return('Toothpaste')
+        allow(fake_item).to receive(:name).and_return('+5 Dexterity Vest')
 
         expect(fake_item.categorize).to eq(:ordinary)
       end
