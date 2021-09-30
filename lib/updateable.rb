@@ -1,14 +1,10 @@
 module Updateable
   def update
     case @category
-    when :ordinary
-      update_ordinary
-    when :ages_well
-      update_ages_well
-    when :backstage_pass
-      update_backstage_pass
-    when :conjured
-      update_conjured
+    when :ordinary then update_ordinary
+    when :ages_well then update_ages_well
+    when :backstage_pass then update_backstage_pass
+    when :conjured then update_conjured
     end
 
     age unless @category == :legendary
@@ -28,14 +24,10 @@ module Updateable
 
   def update_backstage_pass
     case @sell_in
-    when 11..Float::INFINITY  
-      appreciate(1)
-    when 6..10
-      appreciate(2)
-    when 1..5
-      appreciate(3)
-    when -Float::INFINITY..0
-      make_quality_zero
+    when 11..Float::INFINITY then appreciate(1)
+    when 6..10 then appreciate(2)
+    when 1..5 then appreciate(3)
+    when -Float::INFINITY..0 then make_quality_zero
     end
   end
 
