@@ -1,6 +1,5 @@
 require 'categorizable'
 require 'item'
-require 'item_methods'
 require 'updateable'
 
 class GildedRose
@@ -9,7 +8,6 @@ class GildedRose
     
     @items.each do |item|
       item
-      .extend(ItemMethods)
       .extend(Categorizable)
       .extend(Updateable)
       .categorize
