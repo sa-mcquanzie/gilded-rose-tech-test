@@ -1,24 +1,25 @@
-# require 'updateable'
+require 'updateable'
 
-# describe Updateable do
-#   context 'when another class instance extends it' do
-#     class FakeItemClass
-#       def initialize(category, sell_in, quality)
-#         @category = category
-#         @sell_in = sell_in
-#         @quality = quality
-#       end
-#     end
+describe Updateable do
+  class FakeItem
+    attr_accessor :category, :sell_in, :quality
 
-#     let(:fake_item) { FakeItemClass.new(:ordinary, 5, 2) }
+    def initialize(category, sell_in, quality)
+      @category, @sell_in, @quality = category, sell_in, quality
+    end
+  end
 
+  context 'when another object extends it' do    
+    describe '#update' do
+      it 'decreases the sell_in time by 1' do
+        item = FakeItem.new(:ordinary, 5, 2).extend(subject)
 
-#     it 'updates ordinary items' do
-#       fake_item.extend(Updateable)
-#       puts subject
-#       allow(subject).to receive(within_date?).and_return(true)
+        allow(item).to receive(:within_date?)
+        allow(item).to receive(:depreciate)
 
-#       expect(fake_item.update).to eq(4)
-#     end
-#   end
-# end
+        item.update
+        expect(item.sell_in).to eq(4)
+      end
+    end
+  end
+end
