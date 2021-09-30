@@ -20,7 +20,7 @@ module Updateable
   end
 
   def update_ordinary
-    within_date? ? depreciate : depreciate(2)
+    @sell_in.positive? ? depreciate : depreciate(2)
   end
 
   def update_ages_well
@@ -42,10 +42,6 @@ module Updateable
 
   def age
     @sell_in -= DAY_LENGTH
-  end
-
-  def within_date?
-    @sell_in.positive?
   end
 
   def appreciate(amount = DEFAULT_QUALITY_EFFECT)
