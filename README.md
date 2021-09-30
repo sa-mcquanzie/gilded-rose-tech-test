@@ -4,7 +4,7 @@
 ### Specification
 
 Update the existing app according to the criteria found in
-GildedRoseRequirements.txt.
+GildedRoseRequirements.txt
 
 ### Initial Plan
 

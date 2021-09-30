@@ -3,10 +3,10 @@ module Updateable
   DEFAULT_QUALITY_EFFECT = 1
   MAX_QUALITY = 50
   MIN_QUALITY = 0
-  INTERVAL_1 = (11..Float::INFINITY)
-  INTERVAL_2 = (6..10)
-  INTERVAL_3 = (1..5)
-  INTERVAL_4 = -Float::INFINITY..0
+  INTERVAL_1 = (11..Float::INFINITY).freeze
+  INTERVAL_2 = (6..10).freeze
+  INTERVAL_3 = (1..5).freeze
+  INTERVAL_4 = -(Float::INFINITY..0).freeze
 
   def update
     case @category
