@@ -14,13 +14,10 @@ GildedRoseRequirements.txt
 
 ### Phase 2!
 
-- [x] Separate items in to classes based on update behaviour
-    * All inherit from an interim UpdateableItem parent class which inherits from Item
-    * Might seem like huge overkill, HOWEVER... I think it will end up _a lot_ simpler as well as more flexible
-    * UPDATE: Rethunk this and made items inherit from some modules instead
+- [x] Test drive redesign
 - [x] Rewrite tests with mocks
 - [x] Hopefully still pass
 - [x] Refactor
-- [ ] Test drive towards adding conjoured items using this new design
-- [ ] Update this README
-- [ ] Profit?
+- [x] Test drive towards adding conjoured items using this new design
+- [x] Update this README
+- [x] Profit?
