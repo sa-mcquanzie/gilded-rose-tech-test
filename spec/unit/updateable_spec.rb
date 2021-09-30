@@ -9,13 +9,32 @@ describe Updateable do
 
   context 'when another object extends it' do    
     describe '#update' do
-      context 'for all items' do
+      context 'for all but legendary items' do
         before do
-          item.sell_in = 1
           item.quality = 2
+          item.sell_in = 1
         end
 
-        it 'decreases the sell_in days by 1' do
+        it 'decreases the sell_in days by 1 for ordinary items' do
+          item.category = :ordinary
+          item.update
+          expect(item.sell_in).to eq(0)
+        end
+
+        it 'decreases the sell_in days by 1 for ages_well items' do
+          item.category = :ages_well
+          item.update
+          expect(item.sell_in).to eq(0)
+        end
+
+        it 'decreases the sell_in days by 1 for conjured items' do
+          item.category = :conjured
+          item.update
+          expect(item.sell_in).to eq(0)
+        end
+
+        it 'decreases the sell_in days by 1 for backstage_pass items' do
+          item.category = :backstage_pass
           item.update
           expect(item.sell_in).to eq(0)
         end
@@ -124,20 +143,13 @@ describe Updateable do
       end
 
       context 'for legendary items' do
-        before do
+        it 'has no effect' do
           item.category = :legendary
-          item.quality = 80
-        end
-
-        it 'has no effect on the quality before the sell_in days run out' do
           item.sell_in = 5
-          item.update
-          expect(item.quality).to eq(80)
-        end
+          item.quality = 80
 
-        it 'still has no effect on the quality after the sell_in days run out' do
-          item.sell_in = -5
           item.update
+          expect(item.sell_in).to eq(5)
           expect(item.quality).to eq(80)
         end
       end

@@ -11,7 +11,7 @@ module Updateable
       update_conjured
     end
 
-    age
+    age unless @category == :legendary
   end
 
   def update_ordinary
