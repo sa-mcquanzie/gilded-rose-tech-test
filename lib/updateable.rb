@@ -1,4 +1,13 @@
 module Updateable
+  DAY_LENGTH = 1
+  DEFAULT_QUALITY_EFFECT = 1
+  MAX_QUALITY = 50
+  MIN_QUALITY = 0
+  INTERVAL_1 = (11..Float::INFINITY)
+  INTERVAL_2 = (6..10)
+  INTERVAL_3 = (1..5)
+  INTERVAL_4 = -Float::INFINITY..0
+
   def update
     case @category
     when :ordinary then update_ordinary
@@ -11,11 +20,11 @@ module Updateable
   end
 
   def update_ordinary
-    within_date? ? depreciate(1) : depreciate(2)
+    within_date? ? depreciate : depreciate(2)
   end
 
   def update_ages_well
-    appreciate(1)
+    appreciate
   end
 
   def update_conjured
@@ -24,15 +33,15 @@ module Updateable
 
   def update_backstage_pass
     case @sell_in
-    when 11..Float::INFINITY then appreciate(1)
-    when 6..10 then appreciate(2)
-    when 1..5 then appreciate(3)
-    when -Float::INFINITY..0 then make_quality_zero
+    when INTERVAL_1 then appreciate
+    when INTERVAL_2 then appreciate(2)
+    when INTERVAL_3 then appreciate(3)
+    when INTERVAL_4 then @quality = 0
     end
   end
 
   def age
-    @sell_in -= 1
+    @sell_in -= DAY_LENGTH
   end
 
   def within_date?
@@ -43,17 +52,13 @@ module Updateable
     !within_date?
   end
 
-  def appreciate(amount)
+  def appreciate(amount = DEFAULT_QUALITY_EFFECT)
     @quality += amount
-    @quality = 50 if @quality > 50
+    @quality = MAX_QUALITY if @quality > MAX_QUALITY
   end
 
-  def depreciate(amount)
+  def depreciate(amount = DEFAULT_QUALITY_EFFECT)
     @quality -= amount
-    @quality = 0 if @quality.negative?
-  end
-
-  def make_quality_zero
-    @quality = 0
+    @quality = MIN_QUALITY if @quality.negative?
   end
 end
