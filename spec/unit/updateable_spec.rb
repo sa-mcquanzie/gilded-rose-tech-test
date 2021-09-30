@@ -1,10 +1,10 @@
 require 'updateable'
 
-describe Updateable do
-  class FakeItem
-    attr_accessor :category, :sell_in, :quality
-  end
+class FakeItem
+  attr_accessor :category, :sell_in, :quality
+end
 
+describe Updateable do
   let(:item) { FakeItem.new.extend(subject) }
 
   context 'when another object extends it' do    

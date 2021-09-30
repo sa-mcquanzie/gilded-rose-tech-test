@@ -31,7 +31,6 @@ module Updateable
       appreciate(3)
     when -Float::INFINITY..0
       make_quality_zero
-    else
     end
   end
 
@@ -49,7 +48,7 @@ module Updateable
 
   def appreciate(amount)
     @quality += amount
-    @quality = 50 if self.quality > 50
+    @quality = 50 if @quality > 50
   end
 
   def depreciate(amount)
