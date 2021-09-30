@@ -6,7 +6,7 @@ module Updateable
   INTERVAL_1 = (11..Float::INFINITY).freeze
   INTERVAL_2 = (6..10).freeze
   INTERVAL_3 = (1..5).freeze
-  INTERVAL_4 = -(Float::INFINITY..0).freeze
+  INTERVAL_4 = (-Float::INFINITY..0).freeze
 
   def update
     case @category

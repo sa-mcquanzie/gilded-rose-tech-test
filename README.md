@@ -21,6 +21,6 @@ GildedRoseRequirements.txt
 - [x] Rewrite tests with mocks
 - [x] Hopefully still pass
 - [x] Refactor
-- [ ] Test drive towards adding conjoured items using this new design
+- [x] Test drive towards adding conjoured items using this new design
 - [ ] Update this README
 - [ ] Profit?
