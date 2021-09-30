@@ -7,6 +7,8 @@ module Updateable
       update_ages_well
     when :backstage_pass
       update_backstage_pass
+    when :conjured
+      update_conjured
     end
 
     age
@@ -18,6 +20,10 @@ module Updateable
 
   def update_ages_well
     appreciate(1)
+  end
+
+  def update_conjured
+    2.times { update_ordinary }
   end
 
   def update_backstage_pass

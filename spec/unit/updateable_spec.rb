@@ -33,6 +33,13 @@ describe Updateable do
 
           expect(item.quality).to eq(0)
         end
+
+        it 'limits the minimum quality to 0 for conjured items' do
+          item.category = :conjured
+          3.times { item.update }
+
+          expect(item.quality).to eq(0)
+        end
       end
 
       context 'for items whose quality appreciates over time' do
@@ -73,6 +80,26 @@ describe Updateable do
 
           item.update
           expect(item.quality).to eq(2)
+        end
+      end
+
+      context 'for conjured items' do
+        before { item.category = :conjured }
+
+        it 'reduces the quality by 2 before the sell_in days run out' do
+          item.sell_in = 5
+          item.quality = 5
+
+          item.update
+          expect(item.quality).to eq(3)
+        end
+
+        it 'reduces the quality by 2 after the sell_in days run out' do
+          item.sell_in = 0
+          item.quality = 8
+
+          item.update
+          expect(item.quality).to eq(4)
         end
       end
 
