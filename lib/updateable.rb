@@ -48,10 +48,6 @@ module Updateable
     @sell_in.positive?
   end
 
-  def past_date?
-    !within_date?
-  end
-
   def appreciate(amount = DEFAULT_QUALITY_EFFECT)
     @quality += amount
     @quality = MAX_QUALITY if @quality > MAX_QUALITY

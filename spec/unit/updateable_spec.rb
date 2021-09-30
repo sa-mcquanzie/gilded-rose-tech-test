@@ -8,31 +8,6 @@ describe Updateable do
   let(:item) { FakeItem.new.extend(subject) }
 
   context 'when another object extends it' do
-
-    describe '#within_date' do
-      it 'is true if sell_in is more than zero' do
-        item.sell_in = 1
-        expect(item.within_date?).to be(true)
-      end
-
-      it 'is false if sell_in is zero or less' do
-        item.sell_in = 0
-        expect(item.within_date?).to be(false)
-      end
-    end
-
-    describe '#past_date' do
-      it 'is false if sell_in is more than zero' do
-        item.sell_in = 1
-        expect(item.past_date?).to be(false)
-      end
-
-      it 'is true if sell_in is zero or less' do
-        item.sell_in = 0
-        expect(item.past_date?).to be(true)
-      end
-    end
-
     describe '#update' do
       context 'for all but legendary items' do
         before do
