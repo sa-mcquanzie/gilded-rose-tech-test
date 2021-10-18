@@ -21,8 +21,6 @@ GildedRoseRequirements.txt
 - [x] Test drive towards adding conjoured items using this new design
 - [x] Update this README
 - [x] Profit?
-- [x] Update this README
-- [x] Profit?
 
 ## Final implementation
 
